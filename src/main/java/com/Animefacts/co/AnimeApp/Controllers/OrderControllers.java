@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Animefacts.co.AnimeApp.Model.Order;
@@ -14,6 +15,7 @@ import com.Animefacts.co.AnimeApp.NotFoundException.OrderNotFoundException;
 import com.Animefacts.co.AnimeApp.Repository.OrderRepository;
 
 @RestController
+@RequestMapping("/api/v1/Order")
 public class OrderControllers {
     OrderRepository repo;
 
@@ -22,7 +24,7 @@ public class OrderControllers {
     }
 
 //Get all orders
-    @GetMapping("/Order")
+    @GetMapping("/all")
     public List<Order> getOrders(){
         return repo.findAll();
     }

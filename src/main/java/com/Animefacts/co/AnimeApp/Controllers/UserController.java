@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Animefacts.co.AnimeApp.Model.User;
@@ -15,17 +16,18 @@ import com.Animefacts.co.AnimeApp.NotFoundException.UserNotFoundException;
 import com.Animefacts.co.AnimeApp.Repository.UserRepository;
 
 @RestController
-public class UserContoller {
+@RequestMapping("/api/v1/User")
+public class UserController {
 
     UserRepository repo;
 
-    public UserContoller(UserRepository repo) {
+    public UserController(UserRepository repo) {
         this.repo = repo;
     }
 
 //http://127.0.0.1/users
 //get all Users
-    @GetMapping("/User")
+    @GetMapping("/all")
     public List<User> getUser(){
         return repo.findAll();
     }

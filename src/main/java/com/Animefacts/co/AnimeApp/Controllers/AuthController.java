@@ -106,7 +106,8 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new ResponseEntity<>("User logged in Succesfully", HttpStatus.OK);
         }catch(Exception e){
-            return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
+            System.err.println(e.toString());
+            return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);
         }
         
     }

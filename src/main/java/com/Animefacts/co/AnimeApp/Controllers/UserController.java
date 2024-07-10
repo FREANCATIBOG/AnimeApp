@@ -25,22 +25,22 @@ public class UserController {
         this.repo = repo;
     }
 
-//http://127.0.0.1/users
+
 //get all Users
     @GetMapping("/all")
     public List<User> getUser(){
         return repo.findAll();
     }
 
-    @GetMapping("/User/{id}")
+    @GetMapping("/{id}")
     public User getUser(@PathVariable Long id){
         return repo.findById(id)
         .orElseThrow(() -> new UserNotFoundException(id));
     }
 
 //post end points
-//http:127.0.0.1:8080/User/new
-    @PostMapping("/User/new")
+
+    @PostMapping("/new")
     public String addUser (@RequestBody User newUser){
         repo.save(newUser);
         return "Welcome! A new User Can Access";
@@ -48,8 +48,8 @@ public class UserController {
     }
 
 //Update Endpoints
-//http://127.0.0.1:8080/user/edit/1
-@PutMapping("/User/edit/{id}")
+
+@PutMapping("/edit/{id}")
 public User updateUser(@PathVariable Long id, @RequestBody User newUser){
     return repo.findById(id)
     .map(user ->{
@@ -63,8 +63,8 @@ public User updateUser(@PathVariable Long id, @RequestBody User newUser){
 }
 
 //delete
-//http://127.0.0.1:8080/product/delete/1
-@DeleteMapping("/User/delete/{id}")
+
+@DeleteMapping("/delete/{id}")
 public String deleteUser(@PathVariable Long id){
     repo.deleteById(id);
     return "A User Is Deleted";

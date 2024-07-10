@@ -29,7 +29,7 @@ public class OrderControllers {
         return repo.findAll();
     }
 
- @GetMapping("/Order/{id}")
+ @GetMapping("/{id}")
  public Order getOrder(@PathVariable Long id){
     return repo.findById(id)
     .orElseThrow(() -> new OrderNotFoundException(id));
@@ -38,13 +38,13 @@ public class OrderControllers {
 
  //post end points
 
- @PostMapping("/Order/new")
+ @PostMapping("/new")
  public String addOrder(@RequestBody Order newOrder){
     repo.save(newOrder);
     return "A new Order is Added!";
  }
 
- @DeleteMapping("/Order/delete/{id}")
+ @DeleteMapping("/delete/{id}")
  public String deleteProduct(@PathVariable Long id){
     repo.deleteById(id);
     return "An Order is Deleted";

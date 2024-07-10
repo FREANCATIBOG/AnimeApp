@@ -34,7 +34,7 @@ public class ProductController {
 
 
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/{id}")
     public Product getProduct(@PathVariable Long id){
         return repo.findById(id)
         .orElseThrow(()-> new ProductNotFoundException(id));
@@ -43,7 +43,7 @@ public class ProductController {
 
 //post end points
 //http:127.0.0.1:8080/product/new
-@PostMapping("/product/new")
+@PostMapping("/new")
     public String addProduct(@RequestBody Product newProduct){
         repo.save(newProduct);
         return "A new Product is Added. mwehehehehe!";
@@ -51,7 +51,7 @@ public class ProductController {
     }
 //UPDATE ENDPOINTS
 //http://127.0.0.1:8080/product/edit/1
-@PutMapping("/product/edit/{id}")
+@PutMapping("/edit/{id}")
 public Product updateProduct(@PathVariable Long id, @RequestBody Product newProduct){
     return repo.findById(id)
     .map(product ->{
@@ -65,8 +65,8 @@ public Product updateProduct(@PathVariable Long id, @RequestBody Product newProd
 }
 
 //delete
-//http://127.0.0.1:8080/product/delete/1
-@DeleteMapping("/product/delete/{id}")
+
+@DeleteMapping("/delete/{id}")
 public String deleteProduct(@PathVariable Long id){
     repo.deleteById(id);
     return "A product is deleted";
